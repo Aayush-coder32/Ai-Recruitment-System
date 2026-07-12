@@ -142,9 +142,9 @@ ai-recruitment-system-master/
   "candidates": [
     {
       "id": "cand-001",
-      "firstName": "Aisha",
-      "lastName": "Khan",
-      "email": "aisha@example.com",
+      "firstName": "Aayush",
+      "lastName": "Sharma",
+      "email": "aayush@example.com",
       "headline": "Backend Engineer",
       "location": "Lahore",
       "skills": [
@@ -189,9 +189,9 @@ ai-recruitment-system-master/
         "type": "Full-time"
       },
       "socialLinks": {
-        "linkedin": "https://linkedin.com/in/aisha",
-        "github": "https://github.com/aisha",
-        "portfolio": "https://aisha.dev"
+        "linkedin": "https://linkedin.com/in/aayush",
+        "github": "https://github.com/aayush",
+        "portfolio": "https://aayush.dev"
       }
     }
   ]
@@ -209,8 +209,8 @@ ai-recruitment-system-master/
     {
       "rank": 1,
       "candidateId": "cand-001",
-      "name": "Aisha Khan",
-      "email": "aisha@example.com",
+      "name": "Aayush Sharma",
+      "email": "aayush@example.com",
       "headline": "Backend Engineer",
       "location": "Lahore",
       "score": {
