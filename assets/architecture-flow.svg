@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <rect width="1400" height="760" fill="#f5f8f7"/>
+  <rect x="40" y="40" width="1320" height="680" rx="28" fill="#ffffff" stroke="#d5e1dc" stroke-width="2"/>
+  <text x="80" y="105" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">AI Recruitment System Architecture</text>
+  <text x="80" y="145" fill="#55736a" font-family="Segoe UI, Arial, sans-serif" font-size="20">Hybrid pipeline: Gemini for understanding + deterministic scoring for trust and consistency</text>
+
+  <rect x="90" y="220" width="240" height="120" rx="20" fill="#e8f3ef" stroke="#75a491" stroke-width="2"/>
+  <text x="130" y="270" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">Job Description</text>
+  <text x="128" y="305" fill="#35584e" font-family="Segoe UI, Arial, sans-serif" font-size="18">Title, duties, skills,</text>
+  <text x="128" y="330" fill="#35584e" font-family="Segoe UI, Arial, sans-serif" font-size="18">seniority, education</text>
+
+  <rect x="90" y="430" width="240" height="120" rx="20" fill="#fff4de" stroke="#d9ab42" stroke-width="2"/>
+  <text x="126" y="480" fill="#4d3810" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">Candidate Profiles</text>
+  <text x="128" y="515" fill="#6d5420" font-family="Segoe UI, Arial, sans-serif" font-size="18">Skills, projects, links,</text>
+  <text x="128" y="540" fill="#6d5420" font-family="Segoe UI, Arial, sans-serif" font-size="18">experience, education</text>
+
+  <rect x="430" y="215" width="255" height="130" rx="20" fill="#18352f"/>
+  <text x="482" y="268" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Gemini Parser</text>
+  <text x="478" y="302" fill="#d5ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="18">Extracts structured</text>
+  <text x="472" y="327" fill="#d5ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="18">job requirements JSON</text>
+
+  <rect x="430" y="425" width="255" height="130" rx="20" fill="#ffffff" stroke="#18352f" stroke-width="3"/>
+  <text x="460" y="478" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Scoring Engine</text>
+  <text x="458" y="512" fill="#45695e" font-family="Segoe UI, Arial, sans-serif" font-size="18">45 skills, 25 projects,</text>
+  <text x="458" y="537" fill="#45695e" font-family="Segoe UI, Arial, sans-serif" font-size="18">15 exp, 10 edu, 5 bonus</text>
+
+  <rect x="790" y="260" width="250" height="120" rx="20" fill="#fff8ea" stroke="#d9ab42" stroke-width="2"/>
+  <text x="825" y="312" fill="#5f4918" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Evidence Layer</text>
+  <text x="820" y="345" fill="#7a632c" font-family="Segoe UI, Arial, sans-serif" font-size="18">1.00, 0.85, or 0.70</text>
+
+  <rect x="790" y="445" width="250" height="120" rx="20" fill="#ebf0ff" stroke="#6f8de6" stroke-width="2"/>
+  <text x="836" y="497" fill="#233b81" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Ranker</text>
+  <text x="824" y="530" fill="#4a62ab" font-family="Segoe UI, Arial, sans-serif" font-size="18">Filters unavailable</text>
+  <text x="830" y="555" fill="#4a62ab" font-family="Segoe UI, Arial, sans-serif" font-size="18">and sorts by score</text>
+
+  <rect x="1130" y="300" width="180" height="120" rx="20" fill="#18352f"/>
+  <text x="1160" y="352" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700">Explainer</text>
+  <text x="1164" y="385" fill="#d5ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="18">Gemini writes</text>
+  <text x="1156" y="410" fill="#d5ebe3" font-family="Segoe UI, Arial, sans-serif" font-size="18">ranking reasons</text>
+
+  <rect x="1090" y="505" width="260" height="125" rx="20" fill="#eff9f5" stroke="#75a491" stroke-width="2"/>
+  <text x="1144" y="555" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">API Response</text>
+  <text x="1134" y="590" fill="#42665b" font-family="Segoe UI, Arial, sans-serif" font-size="18">Rank, score breakdown,</text>
+  <text x="1118" y="615" fill="#42665b" font-family="Segoe UI, Arial, sans-serif" font-size="18">evidence multiplier, explanation</text>
+
+  <path d="M330 280 H430" fill="none" stroke="#406f60" stroke-width="4"/>
+  <polygon points="430,280 412,270 412,290" fill="#406f60"/>
+
+  <path d="M330 490 H430" fill="none" stroke="#406f60" stroke-width="4"/>
+  <polygon points="430,490 412,480 412,500" fill="#406f60"/>
+
+  <path d="M685 280 H790" fill="none" stroke="#406f60" stroke-width="4"/>
+  <polygon points="790,280 772,270 772,290" fill="#406f60"/>
+
+  <path d="M685 490 H790" fill="none" stroke="#406f60" stroke-width="4"/>
+  <polygon points="790,490 772,480 772,500" fill="#406f60"/>
+
+  <path d="M915 380 V445" fill="none" stroke="#b88417" stroke-width="4"/>
+  <polygon points="915,445 905,427 925,427" fill="#b88417"/>
+
+  <path d="M1040 505 H1090" fill="none" stroke="#4a62ab" stroke-width="4"/>
+  <polygon points="1090,505 1072,495 1072,515" fill="#4a62ab"/>
+
+  <path d="M1220 420 V505" fill="none" stroke="#406f60" stroke-width="4"/>
+  <polygon points="1220,505 1210,487 1230,487" fill="#406f60"/>
+</svg>

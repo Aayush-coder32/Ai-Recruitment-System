@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f4f7fb"/>
+  <rect x="40" y="40" width="1320" height="820" rx="28" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+  <text x="80" y="105" fill="#22324a" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Ranking Output Preview</text>
+  <text x="80" y="145" fill="#637289" font-family="Segoe UI, Arial, sans-serif" font-size="20">Example of the response returned after screening, scoring, evidence adjustment, and explanation generation</text>
+
+  <rect x="85" y="195" width="1230" height="110" rx="18" fill="#edf6f2" stroke="#89b9a5" stroke-width="2"/>
+  <text x="120" y="245" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Job Title:</text>
+  <text x="250" y="245" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="24">Backend Engineer</text>
+  <text x="120" y="282" fill="#46695f" font-family="Segoe UI, Arial, sans-serif" font-size="19">Total candidates: 4   |   Shortlisted: 3   |   Ranking generated successfully</text>
+
+  <rect x="85" y="340" width="1230" height="150" rx="18" fill="#fff9ea" stroke="#dfb75f" stroke-width="2"/>
+  <rect x="105" y="368" width="82" height="92" rx="14" fill="#1e9b69"/>
+  <text x="132" y="423" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">#1</text>
+  <text x="220" y="392" fill="#4c3d16" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Aisha Khan</text>
+  <text x="220" y="425" fill="#7a632c" font-family="Segoe UI, Arial, sans-serif" font-size="19">Backend Engineer | Lahore | Evidence multiplier: 1.00</text>
+  <text x="220" y="460" fill="#6a5524" font-family="Segoe UI, Arial, sans-serif" font-size="18">Skills 39.5 | Projects 22.0 | Experience 14.0 | Education 10.0 | Bonus 4.5 | Total 90.0</text>
+
+  <rect x="85" y="525" width="1230" height="150" rx="18" fill="#eef2ff" stroke="#9aa9e8" stroke-width="2"/>
+  <rect x="105" y="553" width="82" height="92" rx="14" fill="#4e6fd8"/>
+  <text x="132" y="608" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">#2</text>
+  <text x="220" y="577" fill="#273b82" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Bilal Ahmed</text>
+  <text x="220" y="610" fill="#5567b0" font-family="Segoe UI, Arial, sans-serif" font-size="19">API Developer | Karachi | Evidence multiplier: 0.85</text>
+  <text x="220" y="645" fill="#495aa1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Skills 35.0 | Projects 18.0 | Experience 12.5 | Education 9.0 | Bonus 3.0 | Total 66.73</text>
+
+  <rect x="85" y="710" width="1230" height="110" rx="18" fill="#f6f8fb" stroke="#d6dde7" stroke-width="2"/>
+  <text x="120" y="758" fill="#2d3d55" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="700">Sample explanation:</text>
+  <text x="120" y="792" fill="#5f6f85" font-family="Segoe UI, Arial, sans-serif" font-size="18">Ranked #1 because the candidate strongly matches the required backend stack, provides linked project evidence, and demonstrates practical experience that aligns closely with the role.</text>
+</svg>

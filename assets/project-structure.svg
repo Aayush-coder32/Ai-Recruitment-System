@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f7f4ef"/>
+  <rect x="40" y="40" width="1320" height="820" rx="28" fill="#ffffff" stroke="#e2d8c7" stroke-width="2"/>
+  <text x="80" y="105" fill="#2f2618" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Project Structure</text>
+  <text x="80" y="145" fill="#6f6557" font-family="Segoe UI, Arial, sans-serif" font-size="20">Clean separation between API, schema validation, scoring logic, and Gemini integrations</text>
+
+  <rect x="90" y="200" width="340" height="600" rx="22" fill="#f9f5ec" stroke="#d8c7aa" stroke-width="2"/>
+  <text x="120" y="255" fill="#2f2618" font-family="Consolas, Courier New, monospace" font-size="26" font-weight="700">Root Files</text>
+  <text x="120" y="315" fill="#594b37" font-family="Consolas, Courier New, monospace" font-size="22">main.py</text>
+  <text x="120" y="360" fill="#594b37" font-family="Consolas, Courier New, monospace" font-size="22">requirements.txt</text>
+  <text x="120" y="405" fill="#594b37" font-family="Consolas, Courier New, monospace" font-size="22">Procfile</text>
+  <text x="120" y="450" fill="#594b37" font-family="Consolas, Courier New, monospace" font-size="22">README.md</text>
+  <text x="120" y="495" fill="#594b37" font-family="Consolas, Courier New, monospace" font-size="22">.gitignore</text>
+  <text x="120" y="560" fill="#7f7057" font-family="Segoe UI, Arial, sans-serif" font-size="18">Entry point, setup, and documentation</text>
+
+  <rect x="500" y="180" width="360" height="190" rx="22" fill="#eef6f3" stroke="#88b1a1" stroke-width="2"/>
+  <text x="535" y="235" fill="#18352f" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">core/</text>
+  <text x="535" y="280" fill="#32584d" font-family="Consolas, Courier New, monospace" font-size="20">parser.py</text>
+  <text x="535" y="312" fill="#32584d" font-family="Consolas, Courier New, monospace" font-size="20">scorer.py</text>
+  <text x="535" y="344" fill="#32584d" font-family="Consolas, Courier New, monospace" font-size="20">ranker.py</text>
+  <text x="535" y="376" fill="#32584d" font-family="Consolas, Courier New, monospace" font-size="20">explainer.py</text>
+
+  <rect x="500" y="420" width="360" height="160" rx="22" fill="#eef2ff" stroke="#90a2e8" stroke-width="2"/>
+  <text x="535" y="475" fill="#233b81" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">models/</text>
+  <text x="535" y="520" fill="#475db1" font-family="Consolas, Courier New, monospace" font-size="20">schemas.py</text>
+  <text x="535" y="555" fill="#5567aa" font-family="Segoe UI, Arial, sans-serif" font-size="18">Pydantic contracts for jobs, profiles, scores, and responses</text>
+
+  <rect x="500" y="630" width="360" height="150" rx="22" fill="#fff5e4" stroke="#ddb45f" stroke-width="2"/>
+  <text x="535" y="685" fill="#5c4617" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">utils/</text>
+  <text x="535" y="730" fill="#7d6329" font-family="Consolas, Courier New, monospace" font-size="20">gemini.py</text>
+  <text x="535" y="763" fill="#8a6d31" font-family="Segoe UI, Arial, sans-serif" font-size="18">Centralized Gemini client and helper function</text>
+
+  <rect x="930" y="250" width="350" height="450" rx="22" fill="#fffefe" stroke="#ddd6cb" stroke-width="2"/>
+  <text x="965" y="305" fill="#2f2618" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Execution Path</text>
+  <text x="965" y="360" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">1. main.py receives request</text>
+  <text x="965" y="405" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">2. models validate payload</text>
+  <text x="965" y="450" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">3. parser extracts job requirements</text>
+  <text x="965" y="495" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">4. scorer computes category totals</text>
+  <text x="965" y="540" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">5. ranker filters and sorts</text>
+  <text x="965" y="585" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">6. explainer writes final reasoning</text>
+  <text x="965" y="630" fill="#554938" font-family="Segoe UI, Arial, sans-serif" font-size="22">7. main.py returns response JSON</text>
+
+  <path d="M430 500 H500" fill="none" stroke="#8e7b57" stroke-width="4"/>
+  <polygon points="500,500 482,490 482,510" fill="#8e7b57"/>
+
+  <path d="M860 275 H930" fill="none" stroke="#557c6f" stroke-width="4"/>
+  <polygon points="930,275 912,265 912,285" fill="#557c6f"/>
+
+  <path d="M860 500 H930" fill="none" stroke="#5f74c0" stroke-width="4"/>
+  <polygon points="930,500 912,490 912,510" fill="#5f74c0"/>
+
+  <path d="M860 705 H930" fill="none" stroke="#b98928" stroke-width="4"/>
+  <polygon points="930,705 912,695 912,715" fill="#b98928"/>
+</svg>
