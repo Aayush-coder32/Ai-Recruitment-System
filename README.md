@@ -95,7 +95,7 @@ ai-recruitment-system-master/
 |   |-- ranker.py
 |   `-- explainer.py
 |-- models/
-|   `-- schemas.py
+|   `-- temporary.py
 |-- utils/
 |   `-- gemini.py
 `-- assets/
@@ -112,7 +112,7 @@ ai-recruitment-system-master/
 - [`core/scorer.py`](core/scorer.py): deterministic scoring and evidence multiplier logic.
 - [`core/ranker.py`](core/ranker.py): filters unavailable candidates and sorts by score.
 - [`core/explainer.py`](core/explainer.py): asks Gemini for human-readable ranking explanations.
-- [`models/schemas.py`](models/schemas.py): Pydantic models for jobs, candidates, scores, and responses.
+- [`models/temporary.py`](models/temporary.py): redesigned Pydantic models for jobs, candidates, scores, and responses.
 - [`utils/gemini.py`](utils/gemini.py): Gemini client configuration and request helper.
 
 ## API Design

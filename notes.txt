@@ -1,7 +1,7 @@
 
 Each file has one clear job:
 
-schemas.py — defines exactly what a candidate profile and job description look like in Python
+temporary.py — defines exactly what a candidate profile and job description look like in Python
 gemini.py — one place where we connect to Gemini, used by parser and explainer
 parser.py — sends job description to Gemini, gets back structured requirements
 scorer.py — pure logic, no AI, scores each candidate
@@ -201,7 +201,7 @@ ai-recruiting-system/
 ├── requirements.txt        # All dependencies
 │
 ├── models/
-│   └── schemas.py          # Pydantic models (candidate profile, job description)
+│   └── temporary.py        # Pydantic models (candidate profile, job description)
 │
 ├── core/
 │   ├── parser.py           # Gemini parses the job description
@@ -214,7 +214,7 @@ ai-recruiting-system/
 
 Each file has one clear job:
 
-schemas.py — defines exactly what a candidate profile and job description look like in Python
+temporary.py — defines exactly what a candidate profile and job description look like in Python
 gemini.py — one place where we connect to Gemini, used by parser and explainer
 parser.py — sends job description to Gemini, gets back structured requirements
 scorer.py — pure logic, no AI, scores each candidate
@@ -223,16 +223,16 @@ explainer.py — sends results to Gemini, gets human-readable explanations
 main.py — ties everything together as a FastAPI endpoint
 
 
-Which file do you want to build first — shall we start with schemas.py since everything else depends on knowing the data structure?You said: yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possi…yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possible5:47 AMClaude responded: Perfect!Perfect! Let's build schemas.py first.
+Which file do you want to build first — shall we start with temporary.py since everything else depends on knowing the data structure?You said: yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possi…yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possible5:47 AMClaude responded: Perfect!Perfect! Let's build temporary.py first.
 
-What is schemas.py and why do we start here?
+What is temporary.py and why do we start here?
 Think of schemas as blueprints. Before we write any AI logic, we need to tell Python exactly what a candidate profile looks like and what a job description looks like.
 If the backend sends us messy or incomplete data, Pydantic (the library we use) will automatically catch the error before it even reaches our AI logic. This prevents crashes and makes debugging easy.
 We use Pydantic for this — it's a Python library that validates data automatically. You define the shape of your data, and Pydantic enforces it.
 
 Let's build it:Created a file, read a fileCreated a file, read a fileHere's what we just built and why each part matters:
 
-🗂️ What's in schemas.py — Plain English
+🗂️ What's in temporary.py — Plain English
 Enums — Fixed allowed values. For example SkillLevel only allows Beginner, Intermediate, Advanced, or Expert. If the backend accidentally sends "Expertt", Pydantic immediately throws an error instead of letting bad data silently break our scoring.
 Section Models — Each section of the organiser's schema (Skills, Experience, Education etc.) gets its own small model. Clean and organised.
 TalentProfile — The big one. This is the full candidate. It combines all section models into one complete blueprint. Every candidate the backend sends us must match this shape.

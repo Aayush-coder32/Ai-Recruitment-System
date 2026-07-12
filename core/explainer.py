@@ -1,10 +1,10 @@
 from utils.gemini import ask_gemini
-from models.schemas import TalentProfile
+from models.temporary import TemporaryTalentProfile
 
 
 def explain_candidate(
     rank: int,
-    candidate: TalentProfile,
+    candidate: TemporaryTalentProfile,
     scores: dict,
     multiplier: float,
     job_requirements: dict

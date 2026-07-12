@@ -1,4 +1,4 @@
-from models.schemas import TalentProfile
+from models.temporary import TemporaryTalentProfile
 
 
 SKILL_LEVEL_WEIGHTS = {
@@ -9,7 +9,7 @@ SKILL_LEVEL_WEIGHTS = {
 }
 
 
-def calculate_evidence_multiplier(candidate: TalentProfile) -> float:
+def calculate_evidence_multiplier(candidate: TemporaryTalentProfile) -> float:
     evidence_score = 0
     max_evidence = 4
 
@@ -36,7 +36,7 @@ def calculate_evidence_multiplier(candidate: TalentProfile) -> float:
         return 0.70
 
 
-def score_skills(candidate: TalentProfile, job_requirements: dict) -> float:
+def score_skills(candidate: TemporaryTalentProfile, job_requirements: dict) -> float:
     required_skills = [s.lower() for s in job_requirements.get("required_skills", [])]
     preferred_skills = [s.lower() for s in job_requirements.get("preferred_skills", [])]
 
@@ -73,7 +73,7 @@ def score_skills(candidate: TalentProfile, job_requirements: dict) -> float:
     return round(total, 2)
 
 
-def score_projects(candidate: TalentProfile, job_requirements: dict) -> float:
+def score_projects(candidate: TemporaryTalentProfile, job_requirements: dict) -> float:
     if not candidate.projects:
         return 0.0
 
@@ -107,7 +107,7 @@ def score_projects(candidate: TalentProfile, job_requirements: dict) -> float:
     return round(min(total_score, 25), 2)
 
 
-def score_experience(candidate: TalentProfile, job_requirements: dict) -> float:
+def score_experience(candidate: TemporaryTalentProfile, job_requirements: dict) -> float:
     if not candidate.experience:
         return 0.0
 
@@ -155,7 +155,7 @@ def score_experience(candidate: TalentProfile, job_requirements: dict) -> float:
     return round(min(experience_score + tech_bonus, 15), 2)
 
 
-def score_education(candidate: TalentProfile, job_requirements: dict) -> float:
+def score_education(candidate: TemporaryTalentProfile, job_requirements: dict) -> float:
     if not candidate.education:
         return 0.0
 
@@ -204,7 +204,7 @@ def score_education(candidate: TalentProfile, job_requirements: dict) -> float:
     return round(min(best_score, 10), 2)
 
 
-def score_bonus(candidate: TalentProfile, job_requirements: dict) -> float:
+def score_bonus(candidate: TemporaryTalentProfile, job_requirements: dict) -> float:
     bonus = 0
     employment_type = job_requirements.get("employment_type", "Any")
 
@@ -229,7 +229,7 @@ def score_bonus(candidate: TalentProfile, job_requirements: dict) -> float:
     return round(min(bonus, 5), 2)
 
 
-def score_candidate(candidate: TalentProfile, job_requirements: dict) -> dict:
+def score_candidate(candidate: TemporaryTalentProfile, job_requirements: dict) -> dict:
     skills = score_skills(candidate, job_requirements)
     projects = score_projects(candidate, job_requirements)
     experience = score_experience(candidate, job_requirements)

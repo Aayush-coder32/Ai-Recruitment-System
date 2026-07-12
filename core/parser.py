@@ -1,9 +1,10 @@
 import json
+
 from utils.gemini import ask_gemini
-from models.schemas import JobDescription
+from models.temporary import TemporaryJobDescription
 
 
-def parse_job_description(job: JobDescription) -> dict:
+def parse_job_description(job: TemporaryJobDescription) -> dict:
     prompt = f"""
 You are an expert technical recruiter. Analyze the job description below and extract the requirements into a structured JSON format.
 

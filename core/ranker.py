@@ -1,8 +1,8 @@
-from models.schemas import TalentProfile
+from models.temporary import TemporaryTalentProfile
 from core.scorer import score_candidate
 
 
-def rank_candidates(candidates: list[TalentProfile], job_requirements: dict) -> list[dict]:
+def rank_candidates(candidates: list[TemporaryTalentProfile], job_requirements: dict) -> list[dict]:
     scored = []
 
     for candidate in candidates:

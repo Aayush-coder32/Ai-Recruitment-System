@@ -22,7 +22,7 @@
 
   <rect x="500" y="420" width="360" height="160" rx="22" fill="#eef2ff" stroke="#90a2e8" stroke-width="2"/>
   <text x="535" y="475" fill="#233b81" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">models/</text>
-  <text x="535" y="520" fill="#475db1" font-family="Consolas, Courier New, monospace" font-size="20">schemas.py</text>
+  <text x="535" y="520" fill="#475db1" font-family="Consolas, Courier New, monospace" font-size="20">temporary.py</text>
   <text x="535" y="555" fill="#5567aa" font-family="Segoe UI, Arial, sans-serif" font-size="18">Pydantic contracts for jobs, profiles, scores, and responses</text>
 
   <rect x="500" y="630" width="360" height="150" rx="22" fill="#fff5e4" stroke="#ddb45f" stroke-width="2"/>

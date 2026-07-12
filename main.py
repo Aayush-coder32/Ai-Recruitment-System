@@ -1,5 +1,11 @@
 from fastapi import FastAPI, HTTPException
-from models.schemas import ScreeningRequest, ScreeningResponse, RankedCandidate, ScoreBreakdown
+
+from models.temporary import (
+    TemporaryRankedCandidate,
+    TemporaryScoreBreakdown,
+    TemporaryScreeningRequest,
+    TemporaryScreeningResponse,
+)
 from core.parser import parse_job_description
 from core.ranker import rank_candidates
 from core.explainer import explain_all_candidates
@@ -16,8 +22,8 @@ def health_check():
     return {"status": "running", "message": "AI Recruiting System is live"}
 
 
-@app.post("/screen", response_model=ScreeningResponse)
-def screen_candidates(request: ScreeningRequest):
+@app.post("/screen", response_model=TemporaryScreeningResponse)
+def screen_candidates(request: TemporaryScreeningRequest):
     try:
         job_requirements = parse_job_description(request.job)
     except Exception as e:
@@ -38,14 +44,14 @@ def screen_candidates(request: ScreeningRequest):
         candidate = item["candidate"]
         scores = item["scores"]
 
-        results.append(RankedCandidate(
+        results.append(TemporaryRankedCandidate(
             rank=item["rank"],
             candidateId=candidate.id,
             name=f"{candidate.firstName} {candidate.lastName}",
             email=str(candidate.email),
             headline=candidate.headline,
             location=candidate.location,
-            score=ScoreBreakdown(
+            score=TemporaryScoreBreakdown(
                 skills=scores["skills"],
                 projects=scores["projects"],
                 experience=scores["experience"],
@@ -57,7 +63,7 @@ def screen_candidates(request: ScreeningRequest):
             explanation=item["explanation"]
         ))
 
-    return ScreeningResponse(
+    return TemporaryScreeningResponse(
         jobTitle=request.job.title,
         totalCandidates=len(request.candidates),
         shortlisted=len(results),
