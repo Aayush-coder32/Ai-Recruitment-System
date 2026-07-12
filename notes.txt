@@ -1,0 +1,297 @@
+
+Each file has one clear job:
+
+schemas.py — defines exactly what a candidate profile and job description look like in Python
+gemini.py — one place where we connect to Gemini, used by parser and explainer
+parser.py — sends job description to Gemini, gets back structured requirements
+scorer.py — pure logic, no AI, scores each candidate
+ranker.py — sorts by score, filters unavailable candidates
+explainer.py — sends results to Gemini, gets human-readable explanations
+main.py — ties everything together as a FastAPI endpoint
+
+Morning rise and shibeClaude finished the responseYou said: Hiiii, morning rise and shibeHiiii, morning rise and shibe5:23 AMClaude responded: Good morning!Good morning! ☀️ Hope you're having a great start to the day! (And I see what you did there — shibe 🐕)
+Is there something I can help you with today?You said: I actually meant rise and shineI actually meant rise and shine5:24 AMClaude responded: Ha, autocorrect strikes again!Ha, autocorrect strikes again! 😄 Good morning to you too — rise and shine indeed! 🌅
+What can I help you with today?You said: you are going to help me with an ai recruting system, building an ai that shortlists the number of applicants/candidates, let me upload a file and you will tak…you are going to help me with an ai recruting system, building an ai that shortlists the number of applicants/candidates, let me upload a file and you will take a look of how it should be and we will start building together5:25 AMClaude responded: That sounds like a fun project!That sounds like a fun project! Go ahead and upload the file — could be a sample job description, a list of candidates, a spreadsheet, whatever you have in mind — and I'll take a look and we can plan out the system together. 📎You said: in short that's it, but as I have to build it for a competition make sure you first understand it and it's not needed to follow those steps letter on letter, y…pdfin short that's it, but as I have to build it for a competition make sure you first understand it and it's not needed to follow those steps letter on letter, you can even make it better but first understtand what we are building5:31 AMClaude responded: Got it!Got it! Let me break down what I understand we're building:
+Core Idea: A hybrid AI recruiting tool that takes a job description + candidate profiles, scores/ranks them, and gives explainable AI-driven decisions on who to shortlist.
+The Scoring Logic (out of 100):
+
+Skills match → 45pts (heaviest weight)
+Projects/proof of work → 25pts
+Experience → 15pts
+Education → 10pts
+Bonus factors → 5pts
+
+The "Trust" angle is interesting — candidates who show evidence (e.g. GitHub, portfolio, certifications) score higher than those who just claim skills. That's a smart differentiator.
+What makes it a good competition project:
+
+It's not just a keyword matcher — it reasons about candidates
+It explains why someone was shortlisted or rejected
+It mimics real-world ATS (Applicant Tracking Systems) but with transparency
+
+
+Before we start building, a few questions to shape our approach:
+
+What's the competition format? Is this a demo/presentation, a working app, or submitted code?
+Do you have sample data (fake candidates + a job description) or should we create that together?
+Frontend or just backend? A clean UI would impress judges — are you open to building one?
+Which AI API do you want to use? The doc mentions Gemini, but we could also use Claude's API since we're already here 😄
+You said: a working app, we'll have to, I'm only the ai engineer the backend and frontend are built, for the api the competition organisers were very clear let me show y…Talent Profile Schema Specification.docxdocxa working app, we'll have to, I'm only the ai engineer the backend and frontend are built, for the api the competition organisers were very clear let me show you. That doc is the talent schema and also remember to give me things clearly,m like be clear and add a clear explanation of each and everything so that as the ai engineer I'll be able to explain it5:34 AMClaude responded: Let me read both files properly before we go further.Let me read both files properly before we go further.Viewed a file, ran a commandViewed a file, ran a commandNow I have a full picture. Also — you mentioned the competition organisers were clear about the API. You didn't finish that thought — what API do they want you to use? Share that and we'll lock everything in before building.
+But while you do, here's my full understanding of what we're working with:
+
+🧠 What We're Building — Full Breakdown
+The Big Picture
+An AI-powered recruiting system that takes a job description + candidate profiles (in the schema format defined by the organisers), scores each candidate, ranks them, and explains why each person was shortlisted or rejected. This is the AI layer — your job as the AI engineer.
+
+The Talent Profile Schema (what candidate data looks like)
+The organisers have defined a fixed data structure for every candidate. Here's what each section means for scoring:
+SectionFieldsWhy it matters for scoringBasic InfoName, Email, Headline, LocationIdentity + first impressionSkillsSkill name, level (Beginner→Expert), years of experienceCore scoring — 45ptsWork ExperienceCompany, role, dates, technologies usedExperience scoring — 15ptsEducationDegree, field, institutionEducation scoring — 10ptsProjectsName, description, tech stack, link, roleProof of work — 25ptsCertificationsName, issuer, dateBonus scoring — 5ptsAvailabilityFull-time/Part-time/Contract, start dateFiltering (is the person even available?)Social LinksGitHub, LinkedIn, PortfolioTrust/evidence boost — this is the "proof" factor
+
+The Scoring Engine (how we evaluate)
+Every candidate gets a score out of 100:
+
+Skills (45pts) — How well do their skills match the job requirements? Skill level (Expert > Advanced > Intermediate > Beginner) and years of experience both factor in.
+Projects (25pts) — Do they have real projects using relevant technologies? A project with a GitHub/portfolio link gets a higher score than one without — this is the trust/evidence factor.
+Experience (15pts) — Do their past roles and technologies align with the job?
+Education (10pts) — Does their degree field match? (Less weight because projects and skills matter more in tech)
+Bonus (5pts) — Certifications, social links presence, availability match.
+
+
+The AI Layer (your part)
+The AI does three things:
+
+Parse the job description — extract what skills, experience, and qualifications are required
+Score and rank candidates — compare each profile against those requirements using the scoring system above
+Explain the decision — for each candidate, generate a human-readable explanation like "Ranked #1 because they have 4 years of Node.js experience (Expert level), 3 relevant projects with live links, and their current role aligns directly with the position"
+
+
+Now tell me — what API did the organisers specify? Once I know that, we start building the actual code. 🚀You said: didn't you see it in the doc I gave you, the second onedidn't you see it in the doc I gave you, the second one5:35 AMClaude responded: Let me re-read the doc more carefully!Let me re-read the doc more carefully!Re-read the full docx to find API specificationsRe-read the full docx to find API specificationsMy bad — the schema doc doesn't mention a specific API. It only references the talent profile structure. The API specification isn't in either of the two documents you've shared so far.
+Could you share that file or just paste what the organisers said about the API? Once I have that, we're ready to start building. 🙂You said: we'll use gemini api and it's mandatorywe'll use gemini api and it's mandatory5:37 AMClaude responded: Perfect, Gemini API it is — and noted, it's mandatory so we won't deviate from that.Perfect, Gemini API it is — and noted, it's mandatory so we won't deviate from that.
+Here's the plan before we write a single line of code:
+
+🏗️ System Architecture (Your AI Layer)
+Here's how the full flow works:
+Job Description (text)
+        +
+Candidate Profiles (JSON - schema defined by organisers)
+        ↓
+  [1] PARSER MODULE
+  → Send job description to Gemini
+  → Extract: required skills, experience level, education, contract type
+        ↓
+  [2] SCORING ENGINE (pure logic, no AI needed here)
+  → Skills match        → 45pts
+  → Projects/evidence   → 25pts
+  → Experience match    → 15pts
+  → Education match     → 10pts
+  → Bonus (certs, links)→  5pts
+        ↓
+  [3] RANKER
+  → Sort all candidates by total score (high → low)
+  → Apply availability filter (remove "Not Available")
+        ↓
+  [4] EXPLAINER MODULE
+  → Send top candidates + scores to Gemini
+  → Generate human-readable explanation per candidate
+        ↓
+  OUTPUT: Ranked list with scores + explanations (JSON)
+
+📦 What You'll Deliver to the Backend Team
+A clean API endpoint (or Python module) that accepts:
+json{
+  "job_description": "...",
+  "candidates": [ ...array of talent profiles... ]
+}
+And returns:
+json{
+  "shortlist": [
+    {
+      "candidate_id": "...",
+      "name": "...",
+      "total_score": 87,
+      "breakdown": {
+        "skills": 38,
+        "projects": 22,
+        "experience": 13,
+        "education": 9,
+        "bonus": 5
+      },
+      "explanation": "Ranked #1 because..."
+    }
+  ]
+}
+
+🔨 Build Order
+We'll build in this order, step by step:
+
+Gemini setup + job description parser — connect to Gemini, extract job requirements as structured JSON
+Scoring engine — pure Python logic, score each candidate
+Ranker + availability filter — sort and filter
+Explainer — send results back to Gemini for human-readable reasoning
+Wrap it all into one clean function the backend can call
+
+
+Are you ready to start with Step 1 — the Gemini setup and job description parser? And do you already have a Gemini API key, or is that being handled by someone else on the team?You said: will we use pythonwill we use python5:38 AMClaude responded: Yes, Python is the best choice here for your AI layer because:Yes, Python is the best choice here for your AI layer because:
+
+Gemini has an official Python SDK (google-generativeai) — clean and straightforward to use
+It's the standard language for AI/ML engineering — judges will expect it
+Easy to expose as an API endpoint using FastAPI, which the backend team can call
+
+So the stack for your part specifically will be:
+
+Python — main language
+Google Generative AI SDK — to talk to Gemini
+FastAPI — to expose your AI logic as an endpoint the backend can hit
+Pydantic — for data validation (making sure candidate profiles match the schema)
+
+
+One thing to confirm before we start — how is your team structured technically?
+
+Does the backend team expect you to hand them a FastAPI service they call via HTTP?
+Or do they want a Python module/function they import directly into their code?
+
+This changes how we package everything. Once you confirm, we write the first file. 🚀You said: did you also understand how we'll make the ai more trustworthydid you also understand how we'll make the ai more trustworthy5:38 AMClaude responded: Yes!Yes! It's the evidence/proof system from the documentation. Let me break it down clearly so you can explain it:
+
+🔐 How We Make the AI Trustworthy
+The Core Problem
+Anyone can claim anything on a profile. A candidate can write "Expert in React, 5 years experience" — but is there any proof?
+A naive AI would just take that at face value and score them high. That's not trustworthy.
+
+Our Solution — Evidence Confidence Score
+When scoring a candidate, we don't just take their word for it. We verify claims against evidence and apply a confidence multiplier to their final score.
+Here's how it works in practice:
+Evidence we check for:
+
+Do they have a GitHub link? → We can see real code
+Do they have a portfolio link? → We can see real work
+Do their projects have links? → Proof the project actually exists
+Do they have certifications? → Third party verified their skills
+Do their project technologies match their claimed skills? → Consistency check
+
+The multiplier logic:
+Full evidence present   → score × 1.0  (no penalty, full trust)
+Partial evidence        → score × 0.85 (slight reduction)
+No evidence at all      → score × 0.70 (significant reduction)
+Real example:
+
+Candidate A claims Expert Node.js, has GitHub + 3 projects with links using Node.js → gets full 45pts on skills
+Candidate B claims Expert Node.js, no GitHub, no project links, no certifications → gets 45 × 0.70 = 31.5pts
+
+Same claim, very different score — because the AI only trusts what it can verify.
+
+The Consistency Check (Gemini's job)
+We also send the profile to Gemini and ask it one specific question:
+
+"Do the technologies in this candidate's projects and experience match the skills they claim? Flag any inconsistencies."
+
+If Gemini finds inconsistencies (e.g. they claim "AWS Expert" but none of their projects or experience mention AWS), we flag that candidate and reduce their score further.
+
+Why This Matters for the Competition
+This is what separates your system from a basic keyword matcher. You can tell the judges:
+
+"Our system doesn't just rank by claimed skills — it applies an evidence confidence model. Candidates with verifiable proof of work score higher than those making unverified claims. This mirrors how a real senior engineer would review a CV."
+
+That's a very strong, explainable, defensible AI design. 💪
+
+Ready to start writing code? 🚀You said: okay nowl let's start fresh step by stepokay nowl let's start fresh step by step5:39 AMClaude responded: Let's go!Let's go! 🚀
+Step 1 first — let's set up the project structure. Here's what our folder will look like:
+ai-recruiting-system/
+│
+├── main.py                 # FastAPI entry point
+├── .env                    # Gemini API key (never shared)
+├── requirements.txt        # All dependencies
+│
+├── models/
+│   └── schemas.py          # Pydantic models (candidate profile, job description)
+│
+├── core/
+│   ├── parser.py           # Gemini parses the job description
+│   ├── scorer.py           # Scoring engine (pure Python logic)
+│   ├── ranker.py           # Ranks and filters candidates
+│   └── explainer.py        # Gemini generates explanations
+│
+└── utils/
+    └── gemini.py           # Gemini client setup
+
+Each file has one clear job:
+
+schemas.py — defines exactly what a candidate profile and job description look like in Python
+gemini.py — one place where we connect to Gemini, used by parser and explainer
+parser.py — sends job description to Gemini, gets back structured requirements
+scorer.py — pure logic, no AI, scores each candidate
+ranker.py — sorts by score, filters unavailable candidates
+explainer.py — sends results to Gemini, gets human-readable explanations
+main.py — ties everything together as a FastAPI endpoint
+
+
+Which file do you want to build first — shall we start with schemas.py since everything else depends on knowing the data structure?You said: yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possi…yeah sure, now you are the guide and remember I've never build nothing of the sort, so you gotta add a small explanation for each and also be as clear as possible5:47 AMClaude responded: Perfect!Perfect! Let's build schemas.py first.
+
+What is schemas.py and why do we start here?
+Think of schemas as blueprints. Before we write any AI logic, we need to tell Python exactly what a candidate profile looks like and what a job description looks like.
+If the backend sends us messy or incomplete data, Pydantic (the library we use) will automatically catch the error before it even reaches our AI logic. This prevents crashes and makes debugging easy.
+We use Pydantic for this — it's a Python library that validates data automatically. You define the shape of your data, and Pydantic enforces it.
+
+Let's build it:Created a file, read a fileCreated a file, read a fileHere's what we just built and why each part matters:
+
+🗂️ What's in schemas.py — Plain English
+Enums — Fixed allowed values. For example SkillLevel only allows Beginner, Intermediate, Advanced, or Expert. If the backend accidentally sends "Expertt", Pydantic immediately throws an error instead of letting bad data silently break our scoring.
+Section Models — Each section of the organiser's schema (Skills, Experience, Education etc.) gets its own small model. Clean and organised.
+TalentProfile — The big one. This is the full candidate. It combines all section models into one complete blueprint. Every candidate the backend sends us must match this shape.
+JobDescription — Simple. Just the job title and the full description text. Our parser will later send this to Gemini.
+ScoreBreakdown — Holds the score split by category (skills: 38, projects: 22 etc.) so the frontend can show a detailed score card.
+RankedCandidate — The final output per candidate. Score + explanation + evidence multiplier all in one object.
+ScreeningRequest / ScreeningResponse — These are the API shapes. Backend sends a request, we send back a response. Clean contract between your work and theirs.
+
+📢 What to Communicate to the Backend Team
+Tell them exactly this:
+
+Send candidate profiles matching the TalentProfile schema — field names must match exactly (camelCase), e.g. firstName not first_name
+The request shape is ScreeningRequest — one job object + a candidates array
+email must be a valid email format — Pydantic will reject it otherwise
+availability.status must be exactly one of: "Available", "Open to Opportunities", "Not Available"
+skills[].level must be exactly one of: "Beginner", "Intermediate", "Advanced", "Expert"
+
+🗂️ What's in gemini.py — Plain English
+load_dotenv() — Reads your .env file and loads the API key into the environment. This way your key is never hardcoded in the code itself.
+os.getenv("GEMINI_API_KEY") — Fetches the key from the environment. If it's missing, the app stops immediately with a clear error message instead of crashing mysteriously later.
+genai.configure() — This is where we actually authenticate with Google's Gemini service using your key.
+model = genai.GenerativeModel("gemini-1.5-flash") — We pick the specific Gemini model to use. gemini-1.5-flash is fast and cost-efficient — perfect for ranking many candidates quickly.
+ask_gemini(prompt) — The one function every other file will call. You pass in any text prompt, it returns Gemini's response as a clean string. The try/except catches any API errors and gives a clear message instead of a cryptic crash.
+
+🗂️ What's in parser.py — Plain English
+The imports — we bring in json (built into Python, handles JSON data), ask_gemini from our gemini.py (the phone line we set up), and JobDescription from our schemas.
+The prompt — this is the instruction we send to Gemini. Notice how we tell it very specifically:
+
+"Return ONLY valid JSON" — so Gemini doesn't add extra chat around the answer
+We define the exact structure we want back
+We explain each field with clear rules so Gemini doesn't guess
+
+The cleanup block — Sometimes Gemini wraps its response in markdown code fences like ```json ... ```. The cleanup strips that out before we try to parse the JSON.
+The fallback — If for any reason Gemini returns something we can't parse, instead of crashing the whole system we return safe empty defaults. This is important for a competition — your app should never crash on bad input.
+
+📢 Tell the backend team this once
+The job description needs to be detailed enough for Gemini to extract requirements from it.
+If a recruiter submits a job description that just says "We need a developer" with no details, Gemini will return empty lists and the scoring will be weak. The more detailed the job description, the better the AI performs.
+So if the frontend has a form where recruiters type the job description, tell them to encourage detailed input — required skills, years of experience, education, employment type. Even just a few sentences of detail makes a big difference.
+
+🗂️ What's in scorer.py — Plain English
+SKILL_LEVEL_WEIGHTS — A simple lookup table. Expert = 1.0 (full points), Advanced = 0.75, Intermediate = 0.5, Beginner = 0.25. So an Expert gets 4x more points than a Beginner for the same skill.
+calculate_evidence_multiplier() — This is the trust system. It checks 4 things: GitHub link, portfolio link, projects with links, and certifications. The more evidence, the higher the multiplier. Full evidence = 1.0 (no penalty), partial = 0.85, no evidence = 0.70.
+score_skills() — Checks each required skill against the candidate's skill list. If they have it, they get points based on their level + a small bonus for years of experience. Preferred skills give bonus points on top.
+score_projects() — For each project, it checks how many of the job's required technologies appear in that project. A project with a live link gets extra points. A project with a detailed description gets a small bonus too.
+score_experience() — Calculates total years of experience from all their jobs combined. Compares against the job's minimum requirement. Also checks if the technologies they used at past jobs match what the job needs.
+score_education() — Checks if their degree level meets the requirement (e.g. Bachelor's when Master's is needed gets partial points). Also checks if their field of study matches.
+score_bonus() — Small rewards for certifications, social links, availability status, and employment type match.
+score_candidate() — The main function that calls all the above, adds everything up, applies the evidence multiplier, and returns the final breakdown.
+
+🗂️ What's in ranker.py — Plain English
+The loop — Goes through every candidate one by one. For each one it first checks their availability status. If it's "Not Available" we skip them completely — they don't even get scored.
+score_candidate() — For everyone who passes the availability check, we call our scoring engine from scorer.py and get back their scores and evidence multiplier.
+scored.sort() — Sorts the entire list by total score from highest to lowest. The reverse=True means highest score comes first.
+The rank assignment — After sorting, we loop through again and assign rank numbers. The best candidate gets rank: 1, second best gets rank: 2, and so on. We use index + 1 because Python lists start at 0 but ranks start at 1.
+What it returns — A clean list of dictionaries, each containing the candidate, their scores, their evidence multiplier, and their rank. This gets passed directly to explainer.py next.
+
+🗂️ What's in explainer.py — Plain English
+The data preparation — Before sending anything to Gemini, we extract the most relevant bits from the candidate profile into clean simple lists. We don't send the entire raw profile — just what Gemini needs to write a good explanation. This keeps the prompt focused and saves API usage.
+The prompt — We give Gemini three things: the candidate's info, their score breakdown, and the job requirements. We then tell it exactly what to write — 3-4 sentences, paragraph form, covering strengths, weaknesses, and the evidence multiplier if it's below 1.0. Specific instructions = better output.
+The fallback — If Gemini fails for any reason, instead of crashing we generate a basic mechanical explanation from the scores alone. The app keeps running no matter what.
+explain_all_candidates() — The main function that loops through every ranked candidate, calls explain_candidate() for each one, and returns the complete final list with everything attached — rank, scores, multiplier, and explanation all in one place.
